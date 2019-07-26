@@ -4,13 +4,39 @@
 using std::cout;
 using std::endl;
 
-double motionProbability(bool motion, int previous_position, int current_poistion)
+double motionProbability(bool motion, int previous_position, int current_position)
 {
   // Calculate the distance from previous_position to current position
   // Remember to wrap around the vector
+  int distance = current_position - previous_position;
+  
+  if (distance < 0)
+  	distance += 20;
+  
+  // TEST
+  printf("\n Distance: %i \n ", distance);
   
   // Given the motion input and distance, return the probability
-  printf("~");
+  if (motion)
+  {
+  	//
+  	if (distance == 1)
+  		return 0.7;
+  	else if (distance == 2)
+  		return 0.3;
+  	else
+  		return 0.0;
+  }
+  else
+  {
+  	//
+  	if (distance == 0)
+  		return 1.0;
+  	else
+  		return 0.0;
+  }
+  
+  //printf("~");
   
   
   // Remove this when you are done
