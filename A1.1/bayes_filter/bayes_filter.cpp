@@ -10,7 +10,7 @@ double motionProbability(bool motion, int previous_position, int current_poistio
   // Remember to wrap around the vector
   
   // Given the motion input and distance, return the probability
-  
+  printf("~");
   
   
   // Remove this when you are done

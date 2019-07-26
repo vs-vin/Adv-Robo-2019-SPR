@@ -1,2 +1,4 @@
-/build
+
+# Not tracking build folders
+build/
 
