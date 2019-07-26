@@ -74,7 +74,13 @@ double observationProbability(bool observation, int position)
 void normaliseState(std::vector<double>& state)
 {
   // Normalise the state variable so that the sum of all the probabilities is equal to 1
+  double sum = 0.0;
   
+  for (double& i : state)
+  	sum += i;
+  
+  for (double& i : state)
+  	i /= sum;
   
   
 }
