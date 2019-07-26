@@ -10,3 +10,21 @@ for available commands:
 Check CMAKE directories if moving to different file system (E.G. YOUR LAPTOP)
 
 
+Commiting to github:
+	
+	Singularity ros-melodic-ar.sif:~/Documents/Adv_Robo/Adv-Robo-2019-SPR/A1.1/bayes_filter/build> git commit -a -m "observation probability calculated successfully"
+	[master d6afc08] observation probability calculated successfully
+	 3 files changed, 18 insertions(+), 1 deletion(-)
+	Singularity ros-melodic-ar.sif:~/Documents/Adv_Robo/Adv-Robo-2019-SPR/A1.1/bayes_filter/build> git push origin master
+	Username for 'https://github.com': vs-vin
+	Password for 'https://vs-vin@github.com': 
+	Counting objects: 10, done.
+	Delta compression using up to 4 threads.
+	Compressing objects: 100% (10/10), done.
+	Writing objects: 100% (10/10), 8.19 KiB | 335.00 KiB/s, done.
+	Total 10 (delta 8), reused 0 (delta 0)
+	remote: Resolving deltas: 100% (8/8), completed with 8 local objects.
+	To https://github.com/vs-vin/Adv-Robo-2019-SPR.git
+		 a036090..d6afc08  master -> master
+	Singularity ros-melodic-ar.sif:~/Documents/Adv_Robo/Adv-Robo-2019-SPR/A1.1/bayes_filter/build> 
+

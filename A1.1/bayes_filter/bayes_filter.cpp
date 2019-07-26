@@ -4,6 +4,7 @@
 using std::cout;
 using std::endl;
 
+
 double motionProbability(bool motion, int previous_position, int current_position)
 {
   // Calculate the distance from previous_position to current position
@@ -82,7 +83,18 @@ void initialiseState(std::vector<double>& state)
 {
   // Fill the state variable with initial probabilities
   // You may need to use a "." in your numbers (e.g. "1.0") so that the result isn't an integer
+  double initVal = 1.0;
+  int vectorSize = 0;
   
+  vectorSize = state.size();
+  printf("\n Vector Size: %i \n", vectorSize);	// TEST
+  
+  initVal /= vectorSize;
+  // initVal = 1/20;	WHY NO WORK???????????????????????????????????????????????
+  printf(" Vector value: %f \n\n", initVal);	// TEST
+  
+  for (double& i : state)
+  	i = initVal;
   
   
 }
