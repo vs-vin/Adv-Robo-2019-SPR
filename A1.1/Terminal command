@@ -1,0 +1,12 @@
+Put in Terminal to start system image
+
+singularity shell /images/singularity_containers/ros-melodic-ar.sif
+
+for available commands:
+
+	"ros" press tab. pause, press tab again
+	should list commands
+
+Check CMAKE directories if moving to different file system (E.G. YOUR LAPTOP)
+
+

@@ -1,0 +1,16 @@
+In the probability equations:
+	| is "given that..."
+	(see A1.1 Motion probability)
+	P (x t+1 = k + 1 |x t = k , u t = 1 ) = 0 .7
+
+learn range for loop in c++
+
+do motion probability (based on equatiojns given)
+
+initialise state
+
+normalise state (simple logic)
+
+update state is worth more
+
+^ means not mormalised probability
