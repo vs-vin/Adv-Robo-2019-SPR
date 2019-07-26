@@ -46,7 +46,24 @@ double motionProbability(bool motion, int previous_position, int current_positio
 double observationProbability(bool observation, int position)
 {
   // Given the observation input and position, return the probability
-  
+  if (position == 2 ||
+			position == 4 ||
+			position == 7)
+  {
+  	//
+  	if (observation)
+  		return 0.8;
+  	else
+  		return 0.2;  	
+  }
+  else
+  {
+  	//
+  	if (observation)
+  		return 0.1;
+  	else
+  		return 0.9;
+  }
   
   
   // Remove this when you are done
