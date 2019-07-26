@@ -9,8 +9,6 @@ double motionProbability(bool motion, int previous_position, int current_poistio
   // Calculate the distance from previous_position to current position
   // Remember to wrap around the vector
   
-  
-  
   // Given the motion input and distance, return the probability
   
   
