@@ -4,6 +4,10 @@ initVal = 1/20; // DOES NOT WORK!!!
 
 WHYYYYYYY
 
+need to use 1./20. to imply that doubles are being divided and the result will then be a double
+	1/20 implies integers are being divided and the result wioll be an integer which is 0
+	.... so yeah
+
 
 setup.bash to give full ros functionality (e.g. tab completion)
 	everytime you start a shell (terminal window)
