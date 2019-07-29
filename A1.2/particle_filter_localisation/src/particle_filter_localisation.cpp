@@ -274,7 +274,7 @@ void ParticleFilter::normaliseWeights()
   // Normalise the weights of the particles in "particles_"
 
 
-  // YOUR CODE HERE //
+  // YOUR CODE HERE TODO //
 
 
 }
@@ -289,7 +289,7 @@ void ParticleFilter::estimatePose()
   // If you just use the pose of the particle with the highest weight the maximum mark you can get for this part is 0.5
 
 
-  // YOUR CODE HERE //
+  // YOUR CODE HERE TODO //
 
 
   // Set the estimated pose message
@@ -467,7 +467,7 @@ void ParticleFilter::odomCallback(const nav_msgs::Odometry& odom_msg)
   // You will probably need "std::cos()" and "std::sin()", and you should wrap theta with "wrapAngle()" too
 
 
-  // YOUR CODE HERE
+  // YOUR CODE HERE TODO
 
 
   // Overwrite the previous odometry message
@@ -540,7 +540,7 @@ void ParticleFilter::scanCallback(const sensor_msgs::LaserScan& scan_msg)
       // You will probably need "std::sqrt()", "std::pow()", and "std::exp()"
 
 
-      // YOUR CODE HERE
+      // YOUR CODE HERE TODO
 
 
     }

@@ -3,3 +3,18 @@ initVal /= 20; // WORKS FINE!!!
 initVal = 1/20; // DOES NOT WORK!!!
 
 WHYYYYYYY
+
+
+setup.bash to give full ros functionality (e.g. tab completion)
+	everytime you start a shell (terminal window)
+	
+"failed to load module ..." thing doesnt matter for our purposes
+
+only need to make workspace once
+
+ln 111, random uniform method
+
+estimatePose last perhaps
+	put things into variables, they get sent through a message
+
+
