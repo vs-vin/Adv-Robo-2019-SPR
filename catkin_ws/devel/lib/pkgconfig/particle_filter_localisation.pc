@@ -1,0 +1,8 @@
+prefix=/home/97117523/Documents/Adv_Robo/Adv-Robo-2019-SPR/catkin_ws/devel
+
+Name: particle_filter_localisation
+Description: Description of particle_filter_localisation
+Version: 0.0.1
+Cflags: 
+Libs: -L/home/97117523/Documents/Adv_Robo/Adv-Robo-2019-SPR/catkin_ws/devel/lib 
+Requires: 
