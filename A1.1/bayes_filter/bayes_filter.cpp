@@ -116,21 +116,26 @@ std::vector<double> updateState(const std::vector<double>& previous_state, bool 
   // Motion update
   for ( int i = 0; state.size() > i; ++i )
   {
+  	double prob_Sum = 0.0;
   	for ( int j = 0; state.size() > j; ++j )
   	{
+  		
   		double motion_Prob = motionProbability( motion, j, i );
-  		printf("\t%f * %f ", motion_Prob, previous_state[j]);
+  		//printf("\t%f * %f ", motion_Prob, previous_state[j]);
   		prob_Sum += previous_state[j] * motion_Prob;
   	}
   	state[i] = prob_Sum;
   	printf(" Sum: %f \n", prob_Sum);
-  	prob_Sum = 0.0;
+  	//prob_Sum = 0.0;
   }
   
   
   // Observation update
   
-  
+  for(int i = 0; state.size() > i; ++i)
+  {
+  	state[i] = state[i] * observationProbability( observation, i );
+  }
   
   // Normalise
   normaliseState(state);
