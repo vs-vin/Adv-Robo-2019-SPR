@@ -15,7 +15,7 @@ double motionProbability(bool motion, int previous_position, int current_positio
   	distance += 20;
   
   // TEST
-  printf("\n Distance: %i \n ", distance);
+  //printf("\n Distance: %i \n ", distance);
   
   // Given the motion input and distance, return the probability
   if (motion)
@@ -41,7 +41,7 @@ double motionProbability(bool motion, int previous_position, int current_positio
   
   
   // Remove this when you are done
-  return 0.;
+  // return 0.;
 }
 
 double observationProbability(bool observation, int position)
@@ -68,7 +68,7 @@ double observationProbability(bool observation, int position)
   
   
   // Remove this when you are done
-  return 0.;
+  //return 0.;
 }
 
 void normaliseState(std::vector<double>& state)
@@ -110,9 +110,22 @@ std::vector<double> updateState(const std::vector<double>& previous_state, bool 
   // Declare a new state vector with the same size as previous_state
   // All values in state are initialised with 0.
   std::vector<double> state(previous_state.size());
-
+	
+	printf("\n Probability Sum: \n");
+	double prob_Sum = 0.0;
   // Motion update
-  
+  for ( int i = 0; state.size() > i; ++i )
+  {
+  	for ( int j = 0; state.size() > j; ++j )
+  	{
+  		double motion_Prob = motionProbability( motion, j, i );
+  		printf("\t%f * %f ", motion_Prob, previous_state[j]);
+  		prob_Sum += previous_state[j] * motion_Prob;
+  	}
+  	state[i] = prob_Sum;
+  	printf(" Sum: %f \n", prob_Sum);
+  	prob_Sum = 0.0;
+  }
   
   
   // Observation update
