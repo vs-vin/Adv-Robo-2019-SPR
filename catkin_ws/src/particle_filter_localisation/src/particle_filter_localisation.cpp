@@ -256,7 +256,19 @@ void ParticleFilter::initialiseParticles()
   // You probably need to use a "." in your numbers (e.g. "1.0") when calculating the weights
 
 
-  // YOUR CODE HERE //
+  // YOUR CODE HERE TODO//
+  
+  double pos_x = randomUniform( map_x_min_, map_x_max_ );
+  double pos_y = randomUniform( map_y_min_, map_y_max_ );
+  
+  for (Particle& i : particles_)
+  {
+  	i.x = randomUniform( map_x_min_, map_x_max_ );
+  	i.y = randomUniform( map_y_min_, map_y_max_ );
+  	
+  	i.theta = randomUniform( 0, 2*M_PI );
+  	i.weight = 1.0;
+  }
 
 
   // Particles may be initialised in occupied space but the map has thin walls so it should be OK
@@ -272,9 +284,23 @@ void ParticleFilter::initialiseParticles()
 void ParticleFilter::normaliseWeights()
 {
   // Normalise the weights of the particles in "particles_"
+		/************** From Bayes filter
+			double sum = 0.0;
+  
+			for (double& i : state)
+				sum += i;
+			
+			for (double& i : state)
+				i /= sum;		******************/
 
-
-  // YOUR CODE HERE //
+  // YOUR CODE HERE TODO//
+  double sum = 0.0;
+  
+	for (Particle& i : particles_)
+		sum += i.weight;
+	
+	for (Particle& i : particles_)
+		i.weight /= sum;	
 
 
 }
@@ -289,7 +315,7 @@ void ParticleFilter::estimatePose()
   // If you just use the pose of the particle with the highest weight the maximum mark you can get for this part is 0.5
 
 
-  // YOUR CODE HERE //
+  // YOUR CODE HERE TODO//
 
 
   // Set the estimated pose message
@@ -467,7 +493,7 @@ void ParticleFilter::odomCallback(const nav_msgs::Odometry& odom_msg)
   // You will probably need "std::cos()" and "std::sin()", and you should wrap theta with "wrapAngle()" too
 
 
-  // YOUR CODE HERE
+  // YOUR CODE HERE TODO
 
 
   // Overwrite the previous odometry message
@@ -540,7 +566,7 @@ void ParticleFilter::scanCallback(const sensor_msgs::LaserScan& scan_msg)
       // You will probably need "std::sqrt()", "std::pow()", and "std::exp()"
 
 
-      // YOUR CODE HERE
+      // YOUR CODE HERE TODO
 
 
     }
