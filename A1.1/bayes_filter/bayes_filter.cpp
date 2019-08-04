@@ -111,7 +111,7 @@ std::vector<double> updateState(const std::vector<double>& previous_state, bool 
   // All values in state are initialised with 0.
   std::vector<double> state(previous_state.size());
 	
-	printf("\n Probability Sum: \n");
+	printf("\nMotion:\t     ");
 	double prob_Sum = 0.0;
   // Motion update
   for ( int i = 0; state.size() > i; ++i )
@@ -125,10 +125,10 @@ std::vector<double> updateState(const std::vector<double>& previous_state, bool 
   		prob_Sum += previous_state[j] * motion_Prob;
   	}
   	state[i] = prob_Sum;
-  	printf(" Sum: %f \n", prob_Sum);
+  	printf("%.4f ", prob_Sum);
   	//prob_Sum = 0.0;
   }
-  
+  printf("\n");
   
   // Observation update
   
