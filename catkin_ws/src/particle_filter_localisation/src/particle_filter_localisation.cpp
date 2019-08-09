@@ -320,16 +320,18 @@ void ParticleFilter::estimatePose()
 			with weight being the magnitude of each particles vector */
 	
 	// done after normalising, assume normalised weights
-	for (Particle& i : particles_)\
+	double angleSum_x = .0, angleSum_y = .0;
+	
+	for (Particle& i : particles_)
 	{
 		estimated_pose_x += i.x * i.weight;
 		estimated_pose_y += i.y * i.weight;
 		
-		double angleSum_x += cos(i.theta) * i.weight;
-		double angleSum_y += cos(i.theta) * i.weight;
+		angleSum_x += cos(i.theta) * i.weight;
+		angleSum_y += sin(i.theta) * i.weight;
 	}
 	
-	estimated_pose_theta = atan2( angleSum_y, angleSum_x );
+	estimated_pose_theta = wrapAngle( atan2( angleSum_y, angleSum_x ) );
 			
 
   // Set the estimated pose message
@@ -524,12 +526,32 @@ void ParticleFilter::odomCallback(const nav_msgs::Odometry& odom_msg)
 
   // Delete any particles outside of the map
   // This is implemented with the "remove_if" algorithm and a lambda, don't worry if you don't understand it
-  particles_.erase(std::remove_if(particles_.begin(), particles_.end(),
+ /* particles_.erase(std::remove_if(particles_.begin(), particles_.end(),
                                   [this](const Particle& p) {
                                     return p.x < this->map_x_min_ || p.x > this->map_x_max_ ||  //
                                            p.y < this->map_y_min_ || p.y > this->map_y_max_;
                                   }),
                    particles_.end());
+                   
+  */
+  
+  
+  	for (Particle& i : particles_)
+  	{
+  		if ( i.x < map_x_min_ || i.x > map_x_max_ || i.y < map_y_min_ || i.y > map_y_max_ )
+  		{
+  			i.x = randomUniform( map_x_min_, map_x_max_ );
+				i.y = randomUniform( map_y_min_, map_y_max_ );
+				
+				i.theta = randomUniform( 0, 2*M_PI );
+				// i.weight = 1/num_particles_; // re weight or leave the weighting ??
+  		}
+  	}
+  	
+  	
+  
+  
+  
 
   // Normalise particle weights because particles have been deleted
   normaliseWeights();
