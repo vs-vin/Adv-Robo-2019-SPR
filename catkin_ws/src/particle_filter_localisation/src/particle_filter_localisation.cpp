@@ -316,7 +316,21 @@ void ParticleFilter::estimatePose()
 
 
   // YOUR CODE HERE TODO//
-
+	/*	Through a quick google search i found that, for the angle this is equivalent to doing a vector sum 
+			with weight being the magnitude of each particles vector */
+	
+	// done after normalising, assume normalised weights
+	for (Particle& i : particles_)\
+	{
+		estimated_pose_x += i.x * i.weight;
+		estimated_pose_y += i.y * i.weight;
+		
+		double angleSum_x += cos(i.theta) * i.weight;
+		double angleSum_y += cos(i.theta) * i.weight;
+	}
+	
+	estimated_pose_theta = atan2( angleSum_y, angleSum_x );
+			
 
   // Set the estimated pose message
   estimated_pose_.position.x = estimated_pose_x;
@@ -492,8 +506,17 @@ void ParticleFilter::odomCallback(const nav_msgs::Odometry& odom_msg)
   // Use "randomNormal()" with "motion_distance_noise_stddev_" and "motion_rotation_noise_stddev_" to get random values
   // You will probably need "std::cos()" and "std::sin()", and you should wrap theta with "wrapAngle()" too
 
-
+	double distPlus_noise = 0.0;
+	
   // YOUR CODE HERE TODO
+  
+  for (Particle& i : particles_)
+  {
+  	distPlus_noise = distance + randomNormal(motion_distance_noise_stddev_);
+  	i.x += distPlus_noise * cos(i.theta);
+  	i.y += distPlus_noise * sin(i.theta);
+  	i.theta = wrapAngle(i.theta + rotation + randomNormal(motion_rotation_noise_stddev_));
+  }
 
 
   // Overwrite the previous odometry message
@@ -567,7 +590,9 @@ void ParticleFilter::scanCallback(const sensor_msgs::LaserScan& scan_msg)
 
 
       // YOUR CODE HERE TODO
-
+      double eq_p1 = 1/(sqrt(2*M_PI*pow(sensing_noise_stddev_, 2)));
+      double eq_p2 = exp(-1*pow((particle_range - scan_range), 2)/(2 * pow(sensing_noise_stddev_, 2)));
+			likelihood *= eq_p1 * eq_p2;
 
     }
 
