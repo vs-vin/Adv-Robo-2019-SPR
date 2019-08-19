@@ -1,0 +1,21 @@
+google search
+
+pathfinding.js
+
+discretised space, each movement has a cost, keep expanding until goal reached
+djikstra's algo
+
+A* method
+
+heuristic to predict quality of a node
+
+
+more optimal to end search if goal is found in a neighboring cell
+
+dijkstra to A*
+	if its on the open set, check which is the best path
+		replace if cost better, discard if cost is worse
+
+relative speed dependant on the environment
+
+

@@ -131,6 +131,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/97117523/Documents/Adv_Robo/Adv-Robo-2019-SPR/catkin_ws/build/gtest/cmake_install.cmake")
+  include("/home/97117523/Documents/Adv_Robo/Adv-Robo-2019-SPR/catkin_ws/build/astar_path_planner/cmake_install.cmake")
   include("/home/97117523/Documents/Adv_Robo/Adv-Robo-2019-SPR/catkin_ws/build/particle_filter_localisation/cmake_install.cmake")
 
 endif()

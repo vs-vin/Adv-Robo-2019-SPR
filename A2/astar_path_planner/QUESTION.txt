@@ -1,0 +1,7 @@
+Describe what happens when the heuristic cost weight is above 1.0.
+Try various start and goal positions, and various weight values.
+
+ANSWER HERE:
+
+
+

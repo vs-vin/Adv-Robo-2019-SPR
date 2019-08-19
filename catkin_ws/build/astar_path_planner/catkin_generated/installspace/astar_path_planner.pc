@@ -1,0 +1,8 @@
+prefix=/home/97117523/Documents/Adv_Robo/Adv-Robo-2019-SPR/catkin_ws/install
+
+Name: astar_path_planner
+Description: Description of astar_path_planner
+Version: 0.0.1
+Cflags: -I/home/97117523/Documents/Adv_Robo/Adv-Robo-2019-SPR/catkin_ws/install/include
+Libs: -L/home/97117523/Documents/Adv_Robo/Adv-Robo-2019-SPR/catkin_ws/install/lib 
+Requires: 

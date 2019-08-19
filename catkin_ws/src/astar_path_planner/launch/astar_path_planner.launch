@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <!-- Map server -->
+    <node pkg="map_server" type="map_server" name="map_server" required="true"
+          args="$(find astar_path_planner)/config/map.yaml"/>
+
+    <!-- RViz -->
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find astar_path_planner)/config/visualisation.rviz"/>
+
+    <!-- Particle filter localisation -->
+    <node pkg="astar_path_planner" type="astar_path_planner" name="astar_path_planner" output="screen">
+        <!--<param name="inflation_radius" type="double" value="0.2"/>-->
+
+        <!-- Target rate of the main loop in planPath() -->
+        <!-- Reduce this to slow down the visualisation of the open and closed sets -->
+        <!-- <param name="plan_path_main_loop_rate" type="double" value="500"/> -->
+    </node>
+
+</launch>
