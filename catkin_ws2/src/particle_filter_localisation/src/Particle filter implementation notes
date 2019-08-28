@@ -1,0 +1,12 @@
+make sure weight is not 0 when calculating weighted average of angles 
+
+particles iunitialised and are generated on the map quite nicely
+
+Problems:
+	if the worng assumption of losaction is zoned in through probablity, particles do not re distribute across the map to correct for this
+	
+	if the particles all leave the map then the map freezes
+	
+
+the blue arrow doesnt seem to be following the cloude of particles
+	

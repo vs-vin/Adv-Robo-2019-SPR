@@ -1,0 +1,5 @@
+bool diagonal_movement
+float64 heuristic_cost_weight
+---
+int32 length_of_path
+int32 number_of_nodes_in_closed_set

@@ -1,0 +1,8 @@
+prefix=/media/sf_GitHub/Adv-Robo-2019-SPR/catkin_ws2/devel
+
+Name: astar_path_planner
+Description: Description of astar_path_planner
+Version: 0.0.1
+Cflags: -I/media/sf_GitHub/Adv-Robo-2019-SPR/catkin_ws2/devel/include
+Libs: -L/media/sf_GitHub/Adv-Robo-2019-SPR/catkin_ws2/devel/lib 
+Requires: 

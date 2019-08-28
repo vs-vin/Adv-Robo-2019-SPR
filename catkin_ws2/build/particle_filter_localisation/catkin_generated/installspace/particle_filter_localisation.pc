@@ -1,0 +1,8 @@
+prefix=/media/sf_GitHub/Adv-Robo-2019-SPR/catkin_ws2/install
+
+Name: particle_filter_localisation
+Description: Description of particle_filter_localisation
+Version: 0.0.1
+Cflags: 
+Libs: -L/media/sf_GitHub/Adv-Robo-2019-SPR/catkin_ws2/install/lib 
+Requires: 

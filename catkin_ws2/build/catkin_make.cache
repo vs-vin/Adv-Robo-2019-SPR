@@ -1,0 +1,2 @@
+astar_path_planner:particle_filter_localisation
+-DCATKIN_DEVEL_PREFIX=/media/sf_GitHub/Adv-Robo-2019-SPR/catkin_ws2/devel -DCMAKE_INSTALL_PREFIX=/media/sf_GitHub/Adv-Robo-2019-SPR/catkin_ws2/install -G Unix Makefiles
