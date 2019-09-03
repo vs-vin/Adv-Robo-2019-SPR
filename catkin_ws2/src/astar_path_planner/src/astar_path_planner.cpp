@@ -20,6 +20,10 @@ namespace
 double heuristicCost(astar_path_planner::WorldPosition a, astar_path_planner::WorldPosition b)
 {
   // Return a heuristic cost between two world positions
+  // get the euclidean (straight line distance)
+
+  // use the grid positions to find distance in x and y (get absolute values)
+  // pythagoras to get distance, scale by grid resolution to get metres (map_.info.resolution)
 
   return 0.;  // YOUR CODE HERE
 }
@@ -218,11 +222,11 @@ bool PathPlanner::planPath(astar_path_planner::PlanPath::Request& req, astar_pat
     //     If the adjacent cell is not on the closed or open sets, add it to the open set
 
     // YOUR CODE HERE
-    Node best = OpenSet::pop(req.heuristic_cost_weight);
+    Node best_node = OpenSet::pop(req.heuristic_cost_weight);
     ClosedSet::push(&best);
 
     // check if the best Node ID matchs the goal ID
-    if (best.id == goal_cell.id)
+    if (best_node.id == goal_cell.id)
     {
       goal_found = true;
       break;
@@ -237,19 +241,25 @@ bool PathPlanner::planPath(astar_path_planner::PlanPath::Request& req, astar_pat
       // check if on closed set
       if (ClosedSet::contains(s.id))
         // do nothing
-      else if (OpenSet::contains(s.id))
-        {
-          // update node if cell cost is better
-          
-        }
       else
       {
+        // Build a Node with parameters of adjacent cell
+            Node cell_node = {s.id, best_node.id, s.cost};
+            cell_node.heuristic_cost =  ; // calc heuristic between goal and cell
+                // use the heuristic cost function from above
 
+        if (OpenSet::contains(s.id))
+          {
+            // update node if cell cost is better
+            
+            // Send node (cell_node) via OpenSet::update()
+          }
+        else
+        {
+          // add cell_node to open set
+           // OpenSet::push()
+        }
       }
-      // check else if on open set
-        
-      // otherwise:
-        // add cell to open set
     }
     // YOU DON'T NEED TO MODIFY ANYTHING AFTER THIS LINE
 
