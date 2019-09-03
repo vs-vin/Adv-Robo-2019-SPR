@@ -218,7 +218,39 @@ bool PathPlanner::planPath(astar_path_planner::PlanPath::Request& req, astar_pat
     //     If the adjacent cell is not on the closed or open sets, add it to the open set
 
     // YOUR CODE HERE
+    Node best = OpenSet::pop(req.heuristic_cost_weight);
+    ClosedSet::push(&best);
 
+    // check if the best Node ID matchs the goal ID
+    if (best.id == goal_cell.id)
+    {
+      goal_found = true;
+      break;
+    }
+    
+    //Get adjacent cells
+    std::vector<AdjacentCell> adjacent = getAdjacentCells(best.id, req.diagonal_movement);
+
+    // traverse through the vector of adjacent cells
+    for (auto& s : adjacent)
+    {
+      // check if on closed set
+      if (ClosedSet::contains(s.id))
+        // do nothing
+      else if (OpenSet::contains(s.id))
+        {
+          // update node if cell cost is better
+          
+        }
+      else
+      {
+
+      }
+      // check else if on open set
+        
+      // otherwise:
+        // add cell to open set
+    }
     // YOU DON'T NEED TO MODIFY ANYTHING AFTER THIS LINE
 
     // Publish the sets

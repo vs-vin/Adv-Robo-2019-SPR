@@ -64,9 +64,15 @@ void OpenSet::update(const Node& n)
   // If the cost of node "n" is less than the cost of the node already in the open set, replace it
 
   // YOUR CODE HERE
-
+  // traverse node_ vector
+  // check if .id same for n and node_[i]
+    // check if the cost is less
+      // if yes, replace node_[i] with n
   
-
+  // do with range based for loop?
+    // break when n found? (no, cannot track iterator, unless... increment a variable)
+    // more straight forward to do normal for-loop
+  
 
 }
 
