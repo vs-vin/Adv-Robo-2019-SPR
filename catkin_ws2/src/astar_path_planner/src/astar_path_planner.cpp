@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+// #include <cmath>
 
 #include <ros/ros.h>
 #include <nav_msgs/GetMap.h>
@@ -21,11 +22,16 @@ double heuristicCost(astar_path_planner::WorldPosition a, astar_path_planner::Wo
 {
   // Return a heuristic cost between two world positions
   // get the euclidean (straight line distance)
+  double x = a.x - b.x;
+  double y = a.y - b.y;
+  
+  double d = sqrt( pow(x, 2) + pow(y, 2) );
 
   // use the grid positions to find distance in x and y (get absolute values)
   // pythagoras to get distance, scale by grid resolution to get metres (map_.info.resolution)
-
-  return 0.;  // YOUR CODE HERE
+    // world position already in metres
+  
+  return d;  // YOUR CODE HERE
 }
 
 void waitForKey()
@@ -222,8 +228,21 @@ bool PathPlanner::planPath(astar_path_planner::PlanPath::Request& req, astar_pat
     //     If the adjacent cell is not on the closed or open sets, add it to the open set
 
     // YOUR CODE HERE
-    Node best_node = OpenSet::pop(req.heuristic_cost_weight);
-    ClosedSet::push(&best);
+    // waitForKey();
+    
+    // OpenSet os;
+    // ClosedSet cs;
+    OccupancyGrid occupancy_grid{};
+
+    Node best_node = open_set.pop(req.heuristic_cost_weight);
+
+    ROS_INFO_STREAM("\n\nNode: \n" << best_node);
+    ROS_INFO_STREAM("\n\nNode: \n" << start_node);
+    // ROS_INFO_STREAM("\n\nNode: \n" << goal_node);
+    
+    // waitForKey();
+
+    closed_set.push(best_node);
 
     // check if the best Node ID matchs the goal ID
     if (best_node.id == goal_cell.id)
@@ -232,35 +251,42 @@ bool PathPlanner::planPath(astar_path_planner::PlanPath::Request& req, astar_pat
       break;
     }
     
-    //Get adjacent cells
-    std::vector<AdjacentCell> adjacent = getAdjacentCells(best.id, req.diagonal_movement);
+    waitForKey();
 
+    //Get adjacent cells
+    std::vector<AdjacentCell> adjacent{};
+    occupancy_grid.getAdjacentCells(best_node.id, req.diagonal_movement);
+    waitForKey();
+    adjacent = occupancy_grid.getAdjacentCells(best_node.id, req.diagonal_movement);
     // traverse through the vector of adjacent cells
     for (auto& s : adjacent)
     {
-      // check if on closed set
-      if (ClosedSet::contains(s.id))
-        // do nothing
-      else
+      waitForKey();
+      // check if not on closed set
+      if (!closed_set.contains(s.id))
       {
         // Build a Node with parameters of adjacent cell
-            Node cell_node = {s.id, best_node.id, s.cost};
-            cell_node.heuristic_cost =  ; // calc heuristic between goal and cell
-                // use the heuristic cost function from above
+        Node cell_node = {s.id, best_node.id, s.cost};
+        cell_node.heuristic_cost =  heuristicCost(s.world_position, goal_cell.world_position); 
+           // calc heuristic between goal and cell
+              // use the heuristic cost function from above
 
-        if (OpenSet::contains(s.id))
+        if (open_set.contains(s.id))
           {
             // update node if cell cost is better
-            
+            open_set.update(cell_node);
             // Send node (cell_node) via OpenSet::update()
           }
         else
         {
           // add cell_node to open set
            // OpenSet::push()
+          open_set.push(cell_node);
         }
       }
     }
+
+      
     // YOU DON'T NEED TO MODIFY ANYTHING AFTER THIS LINE
 
     // Publish the sets

@@ -20,6 +20,23 @@ Node OpenSet::pop(double heuristic_cost_weight)
 
   // YOUR CODE HERE
 
+  double cost_old = .0, cost_new = .0;
+
+  int size = nodes_.size();
+
+  cost_old = nodes_[0].cost + (nodes_[0].heuristic_cost * heuristic_cost_weight);
+
+  for ( int i = 0; i < size; i++)
+  {
+    cost_new = nodes_[i].cost + (nodes_[i].heuristic_cost * heuristic_cost_weight);
+
+    if (cost_new < cost_old)
+    {
+      index = i;
+      cost_old = cost_new;
+    }
+  }
+  
   // store first node 's cost in a variable (store entire node struct?)
     // iterate through the vector (for loop since iterator needed)
     // compare each element's cost with the variable  (.cost + .heuristic_cost * weight)
@@ -64,6 +81,25 @@ void OpenSet::update(const Node& n)
   // If the cost of node "n" is less than the cost of the node already in the open set, replace it
 
   // YOUR CODE HERE
+  
+  // double cost_old = .0, cost_new = .0;
+
+  //int size = nodes_.size();
+
+  for ( auto& s : nodes_ )
+  {
+    if (s.id == n.id)
+    {
+      // cost_new = n.cost + (n.heuristic_cost * heuristic_cost_weight);
+      // cost_old = s.cost + (s.heuristic_cost * heuristic_cost_weight);
+
+      if (n.cost < s.cost)
+      {
+        s = n;
+      }
+    }
+  }
+
   // traverse node_ vector
   // check if .id same for n and node_[i]
     // check if the cost is less

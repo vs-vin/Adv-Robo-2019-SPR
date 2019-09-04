@@ -1,5 +1,9 @@
 #include "astar_path_planner/occupancy_grid.h"
-
+// #include <iostream>
+// #include <ros/ros.h>
+// #include "astar_path_planner/PlanPath.h"
+// #include <nav_msgs/GetMap.h>
+// #include "astar_path_planner/marker.h"
 namespace astar_path_planner
 {
 OccupancyGrid::OccupancyGrid(const nav_msgs::OccupancyGrid& map, const double inflation_radius)
@@ -132,7 +136,7 @@ std::vector<AdjacentCell> OccupancyGrid::getAdjacentCells(int id, bool diagonal_
 
   // Fill this with adjacent cells
   std::vector<AdjacentCell> adjacent_cells{};
-
+/*
   // Use "isOutOfBounds" and "isOccupied" to check if the adjacent cells are out of bounds or occupied
   // The "AdjacentCell" structure has three fields: "id", "cost", and "world_position"
   // Use "getCellId" and "getWorldPosition" to get a cell ID and world position from a grid position
@@ -142,32 +146,99 @@ std::vector<AdjacentCell> OccupancyGrid::getAdjacentCells(int id, bool diagonal_
   // Keep in mind that the distance between diagonal cells is larger than horizontal/vertical cells
 
   // YOUR CODE HERE
-  
+  // waitForKey();
   
   // clear all elements .clear()
+  adjacent_cells.clear();
   // reverve space for 4 elements in the vector (just do 8?)
+  adjacent_cells.reserve(8);
+
   
 
-  //copy grid position to another variable
+  int complete = 0;
+  int pos_num = 0; // adjacent cells 0-7 clockwise around
+    // setup to do up, right, down, left first then check diagonal variable
+  double cost = map_.info.resolution; // for first 4 checks
+  
+  while (!complete)
+  {
+    //copy grid position to another variable
+    GridPosition pos = grid_position;
+    int valid = false;
 
-  // check cell in 4 cardinal directions
-    // assign cell coordinates to the create variable
+    switch (pos_num)
+    {
+      case 0: //upper
+        pos.y++;
+        pos_num = 2;
+        break;
+      
+      case 1: // upper right
+        pos.x++;
+        pos.y++;
+        pos_num = 3;
+        break;
 
-  // use isOutofBounds() and isOccupied() to check
+      case 2: // right
+        pos.x++;
+        pos_num = 4;
+        break;
+      
+      case 3: // lower right
+        pos.x++;
+        pos.y--;
+        pos_num = 5;
+        break;
+      
+      case 4: // lower
+        pos.y--;
+        pos_num = 6;
+        break;
+      
+      case 5: // lower left
+        pos.x--;
+        pos.y--;
+        pos_num = 7;
+        break;
+      
+      case 6: // left
+        pos.x--;
+        if (diagonal_movement)  // go through diagonal cel postion cases too
+        {
+          pos_num = 1;
+          cost *= sqrt(2);  // scale for diagonal distance
+        }
+        else
+          complete = true;
+        break;
+      
+      case 7: // upper left
+        pos.x--;
+        pos.y++;
+        complete = true;
+        break;
+      
+      default:
+        valid = false;
+        pos.x = 0;
+        pos.y = 0;
+        break;
+    }
+    
+    valid =  !( isOccupied(pos) || isOutOfBounds(pos) );
+    if (valid)
+    {
+      AdjacentCell cell =   // build cell struct
+      {
+        getCellId(pos),
+        cost,
+        getWorldPosition(pos)
+      };
 
-  // if good, store info in an AdjacentCell variable
-    // use getCellID() and getWorldPosition()
-    // cost from map_.info.resolution variable
+      adjacent_cells.push_back(cell); // adding cell to vector
 
-  // Add cells to adjacent cell vector once verified
-  // straight 
-
-  // check if diagonal allowed
-
-  // if yes, resize vector to 8 elements (necessary?)
-
-  // check 4 cells in diagonal directions
-    // assign grid position to created variable
+    }
+  }
 
   // if good, store info in an AdjacentCell variable
     // use getCellID() and getWorldPosition()
@@ -175,9 +246,7 @@ std::vector<AdjacentCell> OccupancyGrid::getAdjacentCells(int id, bool diagonal_
       // scale by sqrt(2) for diagonal movement
 
   // Add to vector
-
-  
-
+*/
   return adjacent_cells;
 }
 
