@@ -228,7 +228,7 @@ bool PathPlanner::planPath(astar_path_planner::PlanPath::Request& req, astar_pat
     //     If the adjacent cell is not on the closed or open sets, add it to the open set
 
     // YOUR CODE HERE
-    waitForKey();
+    // waitForKey();
     
     // OpenSet os;
     // ClosedSet cs;

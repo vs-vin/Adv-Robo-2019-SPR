@@ -3,5 +3,20 @@ Try various start and goal positions, and various weight values.
 
 ANSWER HERE:
 
+As the heuristic cost weight is increased above 1.0, the algorithm is much more 
+aggressive in seeking out positions that reduce the Euclidean distance to the goal. 
+For lower cost weight values, the algorithm spreads out its search as it seeks the 
+path to the goal. 
 
+Changing the heuristic weight value changes the emphasis of the cost versus heuristic 
+cost. Higher weight values put greater emphasis on heuristic cost, leading to nodes 
+with lower heuristic cost being strongly sought out. Lower weight values put greater 
+emphasis on the cost which indicates distance from the start node. Nodes closer to 
+the start node are strongly sought out.
+
+Based on the situation, different weight values may be more viable. Open maps with 
+few obstacles would benefit from high heuristic cost weight as it would seek out direct 
+routes. More maze like maps would benefit from lower heuristic cost weight as it would 
+spread out its search through more paths early on rather than railroading the search 
+to reduce Euclidean distance.
 
