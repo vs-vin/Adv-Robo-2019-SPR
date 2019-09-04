@@ -97,6 +97,7 @@ void OpenSet::update(const Node& n)
       {
         s = n;
       }
+      break;
     }
   }
 

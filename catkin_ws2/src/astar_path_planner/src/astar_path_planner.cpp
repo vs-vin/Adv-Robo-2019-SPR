@@ -228,17 +228,18 @@ bool PathPlanner::planPath(astar_path_planner::PlanPath::Request& req, astar_pat
     //     If the adjacent cell is not on the closed or open sets, add it to the open set
 
     // YOUR CODE HERE
-    // waitForKey();
+    waitForKey();
     
     // OpenSet os;
     // ClosedSet cs;
-    OccupancyGrid occupancy_grid{};
+    // OccupancyGrid occupancy_grid_{};
 
     Node best_node = open_set.pop(req.heuristic_cost_weight);
 
     ROS_INFO_STREAM("\n\nNode: \n" << best_node);
-    ROS_INFO_STREAM("\n\nNode: \n" << start_node);
+    // ROS_INFO_STREAM("\n\nNode: \n" << start_node);
     // ROS_INFO_STREAM("\n\nNode: \n" << goal_node);
+    // printf("\n%i\n", req.diagonal_movement);
     
     // waitForKey();
 
@@ -251,22 +252,21 @@ bool PathPlanner::planPath(astar_path_planner::PlanPath::Request& req, astar_pat
       break;
     }
     
-    waitForKey();
+    // waitForKey();
 
     //Get adjacent cells
     std::vector<AdjacentCell> adjacent;
-    occupancy_grid.getAdjacentCells(best_node.id, req.diagonal_movement);
-    waitForKey();
-    adjacent = occupancy_grid.getAdjacentCells(best_node.id, req.diagonal_movement);
+    // waitForKey();
+    adjacent = occupancy_grid_.getAdjacentCells(best_node.id, req.diagonal_movement);
     // traverse through the vector of adjacent cells
     for (auto& s : adjacent)
     {
-      waitForKey();
+      // waitForKey();
       // check if not on closed set
       if (!closed_set.contains(s.id))
       {
         // Build a Node with parameters of adjacent cell
-        Node cell_node = {s.id, best_node.id, s.cost};
+        Node cell_node = {s.id, best_node.id, (s.cost + best_node.cost)};
         cell_node.heuristic_cost =  heuristicCost(s.world_position, goal_cell.world_position); 
            // calc heuristic between goal and cell
               // use the heuristic cost function from above
