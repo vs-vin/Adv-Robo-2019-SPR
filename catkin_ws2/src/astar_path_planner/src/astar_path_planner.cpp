@@ -254,7 +254,7 @@ bool PathPlanner::planPath(astar_path_planner::PlanPath::Request& req, astar_pat
     waitForKey();
 
     //Get adjacent cells
-    std::vector<AdjacentCell> adjacent{};
+    std::vector<AdjacentCell> adjacent;
     occupancy_grid.getAdjacentCells(best_node.id, req.diagonal_movement);
     waitForKey();
     adjacent = occupancy_grid.getAdjacentCells(best_node.id, req.diagonal_movement);

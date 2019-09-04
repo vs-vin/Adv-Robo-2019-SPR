@@ -38,10 +38,29 @@ std::vector<int> ClosedSet::getPath(int start_id, int goal_id)
   std::vector<int> path{};
 
   // YOUR CODE HERE
-
+  int capacity = 1;
+  path.reserve(capacity);
+  path.push_back(goal_id);
   // can reverse a vector??
-
+  int id = goal_id;
   // for/while loop for iteration until start node found
+  while (id != start_id)
+  {
+    for ( auto s : nodes_ )
+    {
+      if (s.id == id)
+      {
+        id = s.parent_id;
+        capacity++;
+        path.reserve(capacity);
+        path.push_back(id);
+        break;
+      }
+    }
+  }
+  // reverse order of path vector
+  std::reverse( std::begin(path), std::end(path) );
+
     // traverse vector to find goal node .id
     // add to id to path vector
     // get .parent_id of node

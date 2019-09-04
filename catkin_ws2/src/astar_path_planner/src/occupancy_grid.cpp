@@ -135,8 +135,8 @@ std::vector<AdjacentCell> OccupancyGrid::getAdjacentCells(int id, bool diagonal_
   GridPosition grid_position = getGridPosition(id);
 
   // Fill this with adjacent cells
-  std::vector<AdjacentCell> adjacent_cells{};
-/*
+  std::vector<AdjacentCell> adjacent_cells;
+
   // Use "isOutOfBounds" and "isOccupied" to check if the adjacent cells are out of bounds or occupied
   // The "AdjacentCell" structure has three fields: "id", "cost", and "world_position"
   // Use "getCellId" and "getWorldPosition" to get a cell ID and world position from a grid position
@@ -246,7 +246,7 @@ std::vector<AdjacentCell> OccupancyGrid::getAdjacentCells(int id, bool diagonal_
       // scale by sqrt(2) for diagonal movement
 
   // Add to vector
-*/
+
   return adjacent_cells;
 }
 
